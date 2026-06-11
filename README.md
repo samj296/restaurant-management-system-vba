@@ -219,8 +219,29 @@ demo123
 All data in this repository is **fictional** and used only for demonstration. All real business data, customer records, financial information, and original passwords have been removed.
 
 ## Screenshots
+<table>
+  <tr>
+    <td>
+      <img src="./docs/login.jpg" width="400"/>
+    </td>
+    <td>
+      <img src="./docs/MainPage.jpg" width="400"/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="./docs/Income-Page.jpg" width="400"/>
+    </td>
+    <td>
+      <img src="./docs/ExpensePage.jpg" width="400"/>
+    </td>
+    <td>
+      <img src="./docs/Billing_KOT.jpg" width="400"/>
+    </td>
+  </tr>
+</table>
 
-
+<br/>
 
 ```text
 docs/
