@@ -35,6 +35,7 @@ End Sub
 ```
 
 This behavior is intentional and part of the original design.
+
 ## Key Features
 
 ### Role‑Based Access Control (3 User Types)
@@ -61,7 +62,9 @@ This behavior is intentional and part of the original design.
 - Cannot view history or reports
 
 ### Multi‑Database Architecture (3 Access Databases)
+
 The system uses **three separate Access databases**, each with a dedicated purpose:
+
 #### Users & Master Data (`users.accdb`)
 - Usernames & passwords
 - Role permissions
@@ -116,6 +119,72 @@ This separation improves performance, security, and maintainability.
 - Auto‑calculated totals
 - Save bill to database
 - Dining “hold bill” support
+
+#### Dual Printer + KOT Logic
+The billing module includes a complete **dual-printer workflow**, used daily in the real restaurant where this system operated.
+
+1) Kitchen Printer (KOT - Kitchen Order Ticket)
+    
+    * Prints **only the items and quantities**.
+    * No prices, no totals, no discounts.
+    * Designed for chefs and kitchen staff.
+    * Clean, minimal layout for fast order preparation.
+    * Triggered automatically when an order is created or updated.
+
+
+```text
+Vindhya Cafe
+KOT #001
+--------------------
+Chicken Shawarma x 2
+Chicken Biryani x 1
+Water Bottle x 1
+```
+2) Customer/ Counter Printer
+
+  * Prints the full detailed bill, including:
+
+      1) Item names
+      2) Quantity
+      3) Individual item prices
+      4) Subtotal
+      5) Discount (if applied)
+      6) Tax
+      7) Final Total
+
+ Supports two discount types:
+
+  * Flat amount (e.g $50 off)
+  * Percentage (e.g 10% off)
+
+  The cashier can select the discount type before printing.
+
+```text
+Vindhya Cafe
+Billing no: xxx
+Chicken Shawarma  120 x 2 =  240/-
+Chicken Biryani   150 x 1 =  150/-
+--------------------------------
+Subtotal                     390/-
+Discount (10%)               -39/-
+Total                        351/-
+```
+
+#### Automatic Daily Income Update
+
+Every time a customer bill is generated:
+
+* The final bill amount is automatically added to the Daily Income table in the Finance database.
+* No manual entry is required.
+* This ensures accurate:
+
+    * Daily sales totals
+    * Monthly reports
+    * Profit/loss calculations
+    * Ledger consistency
+
+This automation was used in the real restaurant to eliminate manual bookkeeping errors.
+
 
 ### Customer Management
 - Add new customers
@@ -227,11 +296,11 @@ All data in this repository is **fictional** and used only for demonstration. Al
     <td>
       <img src="./docs/MainPage.jpg" width="400"/>
     </td>
-  </tr>
-  <tr>
     <td>
       <img src="./docs/Income-Page.jpg" width="400"/>
     </td>
+  </tr>
+  <tr>
     <td>
       <img src="./docs/ExpensePage.jpg" width="400"/>
     </td>
